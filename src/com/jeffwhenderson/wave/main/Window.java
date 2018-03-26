@@ -5,7 +5,7 @@ import java.awt.Dimension;
 
 import javax.swing.JFrame;
 
-public class Window extends Canvas{					// cmd + shift + o // to import without hovering in eclipse
+public class Window extends Canvas{					
 	private static final long serialVersionUID = 1L; // unique ID
 
 	public Window(int width, int height, String title, Game game) {
@@ -18,8 +18,16 @@ public class Window extends Canvas{					// cmd + shift + o // to import without 
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setResizable(false);
 		frame.setLocationRelativeTo(null);
+		frame.setVisible(1 > 0);
 		frame.add(game);
 		game.start();
 	
 	}
 }
+
+/*	NOTES on whats new to me i.e. READ THE DOCS ON THIS STUFF AND MAKE SURE YOU ARE USING IT RIGHT JEFFREY
+ *  public synchronized void --- in Game -> synchronized is new to me. 
+ *  cmd + shift + o // to import without hovering in eclipse
+ *  extending Canvas...
+ *  
+ */
