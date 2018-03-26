@@ -34,7 +34,43 @@ public class Game extends Canvas implements Runnable {
 	
 	@Override
 	public void run() {
-		// TODO Auto-generated method stub
+		/*
+		 * this is a popular pattern for Game Loops. 
+		 */
+		long lastTime = System.nanoTime();
+		double amountOfTicks = 60.0;
+		double ns = 1000000000 / amountOfTicks; //
+		double delta = 0;
+		long timer = System.currentTimeMillis();
+		int frames = 0;
+		
+		while(running) {
+			long now = System.nanoTime();
+			delta += (now - lastTime) / ns;
+			lastTime = now;
+			
+			while(delta >=1) {
+				tick();
+				delta--;
+			}
+			if(running)
+				render();
+			frames++;
+			
+			if(System.currentTimeMillis() - timer > 1000) {
+				timer += 1000;
+				System.out.print("FPS: " + frames);
+				frames = 0;
+			}
+		}
+		stop();
+	}
+	
+	private void tick() {
+		
+	}
+	
+	private void render() {
 		
 	}
 	
