@@ -30,4 +30,6 @@ public class Window extends Canvas{
  *  cmd + shift + o // to import without hovering in eclipse
  *  extending Canvas...
  *  
+ *  to make getters and setters try something like "alt shift s" (probably cmd??)
+ *  
  */

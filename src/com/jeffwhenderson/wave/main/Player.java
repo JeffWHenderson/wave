@@ -1,5 +1,6 @@
 package com.jeffwhenderson.wave.main;
 
+import java.awt.Color;
 import java.awt.Graphics;
 
 public class Player extends GameObject {
@@ -17,7 +18,8 @@ public class Player extends GameObject {
 
 	@Override
 	public void render(Graphics g) {
-		// TODO Auto-generated method stub
+		g.setColor(Color.white);
+		g.fillRect(x, y, 32, 32);
 		
 	}
 
