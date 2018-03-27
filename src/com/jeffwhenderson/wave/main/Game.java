@@ -18,7 +18,7 @@ public class Game extends Canvas implements Runnable {
 	
 	public Game() {
 		handler = new Handler();
-		this.addKeyListener(new KeyInput());
+		this.addKeyListener(new KeyInput(handler));
 		
 		new Window(WIDTH, HEIGHT, "PLACEHOLDER!! in Game constructor", this);
 		r = new Random();
