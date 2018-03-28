@@ -13,6 +13,7 @@ public class Game extends Canvas implements Runnable {
 	private Thread thread;
 	private boolean running = false; // needs a getter and setter possibly
 	private Random r;
+	private HUD hud;
 	
 	private Handler handler;
 	
@@ -21,10 +22,11 @@ public class Game extends Canvas implements Runnable {
 		this.addKeyListener(new KeyInput(handler));
 		
 		new Window(WIDTH, HEIGHT, "PLACEHOLDER!! in Game constructor", this);
+		hud = new HUD();
 		r = new Random();
 		
 		handler.addObject(new Player(WIDTH/2, HEIGHT/2, ID.Player));
-		for(int i = 0; i < 10; i++)
+		//for(int i = 0; i < 10; i++) // adds 10 enemies 
 			handler.addObject(new BasicEnemy(r.nextInt(WIDTH), r.nextInt(HEIGHT), ID.BasicEnemy));
 	}
 
@@ -52,6 +54,7 @@ public class Game extends Canvas implements Runnable {
 		/*
 		 * this is a popular pattern for Game Loops. 
 		 */
+		this.requestFocus();
 		long lastTime = System.nanoTime();
 		double amountOfTicks = 60.0;
 		double ns = 1000000000 / amountOfTicks; //
@@ -83,6 +86,7 @@ public class Game extends Canvas implements Runnable {
 	
 	private void tick() {
 		handler.tick();
+		hud.tick();
 	}
 	
 	private void render() {
@@ -98,6 +102,8 @@ public class Game extends Canvas implements Runnable {
 		g.fillRect(0, 0, WIDTH, HEIGHT);
 		
 		handler.render(g);
+		
+		hud.render(g);
 		
 		g.dispose();
 		bs.show();
