@@ -23,6 +23,8 @@ public class Player extends GameObject {
 		x += velX;
 		y += velY;
 		
+		handler.addObject(new Trail(x + 4, y + 4, ID.Trail, Color.red, 24, 24, 0.01f, handler));
+		
 		collision();
 	}
 

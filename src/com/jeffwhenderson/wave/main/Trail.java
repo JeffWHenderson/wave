@@ -1,24 +1,50 @@
 package com.jeffwhenderson.wave.main;
 
+import java.awt.AlphaComposite;
+import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.Rectangle;
 
 public class Trail extends GameObject {
+	
+	private float alpha = 1, life;
+	private Handler handler;
+	private Color color; 
+	private int width, height;
 
-	public Trail(int x, int y, ID id) {
+	public Trail(int x, int y, ID id, Color color, int width, int height, float life, Handler handler) {
 		super(x, y, id);
-		// TODO Auto-generated constructor stub
+		this.color = color;
+		this.width = width;
+		this.height = height;
+		this.handler = handler;
+		this.life = life;
 	}
 
+	private AlphaComposite makeTransparent(float alpha) {
+		int type = AlphaComposite.SRC_OVER;
+		
+		return (AlphaComposite.getInstance(type, alpha));
+	}
+	
 	@Override
 	public void tick() {
-		// TODO Auto-generated method stub
-		
+		if(alpha > life) {
+			alpha -= (life - 0.0005f);
+		} else 
+			handler.removeObject(this);
 	}
 
 	@Override
 	public void render(Graphics g) {
-		// TODO Auto-generated method stub
+		Graphics2D g2d = (Graphics2D) g;
+		
+		g2d.setComposite(makeTransparent(alpha));
+		g.setColor(color);
+		g.fillRect(x, y, width, height);
+		
+		g2d.setComposite(makeTransparent(1));
 		
 	}
 
