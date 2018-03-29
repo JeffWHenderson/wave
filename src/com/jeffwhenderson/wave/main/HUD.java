@@ -7,8 +7,6 @@ public class HUD {
 	public static int HEALTH = 100; // its not great to use statics but this will be the only instance of health
 	
 	public void tick() {
-		HEALTH--;
-		
 		HEALTH = Game.clamp(HEALTH, 0, 100);
 	}
 	

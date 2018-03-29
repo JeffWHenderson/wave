@@ -22,10 +22,12 @@ public class Game extends Canvas implements Runnable {
 		this.addKeyListener(new KeyInput(handler));
 		
 		new Window(WIDTH, HEIGHT, "PLACEHOLDER!! in Game constructor", this);
+		
 		hud = new HUD();
+		
 		r = new Random();
 		
-		handler.addObject(new Player(WIDTH/2, HEIGHT/2, ID.Player));
+		handler.addObject(new Player(WIDTH/2, HEIGHT/2, ID.Player, handler));
 		//for(int i = 0; i < 10; i++) // adds 10 enemies 
 			handler.addObject(new BasicEnemy(r.nextInt(WIDTH), r.nextInt(HEIGHT), ID.BasicEnemy));
 	}
